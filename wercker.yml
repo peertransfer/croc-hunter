@@ -43,10 +43,10 @@ build:
         code: |
           go test ./...
 
-    # Create cities-controller.json only for initialization
+    # Create croc-hunter-controller.json only for initialization
     - script:
-        name: create croc-hunter.json
-        code: ./create_croc-hunter.json.sh
+        name: create croc-hunter-controller.json
+        code: ./create_croc-hunter-controller.json.sh
 
     # Copy binary to a location that gets passed along to the deploy pipeline
     - script:
