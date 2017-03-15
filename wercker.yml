@@ -42,3 +42,35 @@ build:
         name: go test
         code: |
           go test ./...
+
+    # Create cities-controller.json only for initialization
+    - script:
+        name: create croc-hunter.json
+        code: ./create_croc-hunter.json.sh
+
+    # Copy binary to a location that gets passed along to the deploy pipeline
+    - script:
+        name: copy binary
+        code: cp croc-hunter croc-hunter-service.json croc-hunter-controller.json "$WERCKER_OUTPUT_DIR"
+
+deploy:
+    box: google/golang
+    steps:
+     # Use the scratch step to build a container from scratch based on the files present
+    - internal/docker-scratch-push:
+        username: $QUAY_USERNAME
+        password: $QUAY_PASSWORD
+        cmd: ./croc-hunter
+        tag: $WERCKER_GIT_COMMIT
+        ports: "8080"
+        repository: quay.io/flywire/croc-hunter
+        registry: https://quay.io
+
+rolling-update:
+     - kubectl:
+        server: $KUBERNETES_MASTER
+        username: $KUBERNETES_USERNAME
+        password: $KUBERNETES_PASSWORD
+        insecure-skip-tls-verify: true
+        command: rolling-update croc-hunter
+        image: quay.io/flywire/croc-hunter:$WERCKER_GIT_COMMIT
