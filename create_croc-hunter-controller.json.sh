@@ -37,6 +37,11 @@ cat > croc-hunter-controller.json <<EOF
             ]
           }
         ]
+        "imagePullSecrets": [
+          {
+            "name": "flywire-k8s-pull-secret"
+          }
+        ]
       }
     }
   }
