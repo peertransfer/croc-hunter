@@ -51,7 +51,7 @@ deploy:
       username: $QUAY_USERNAME
       password: $QUAY_PASSWORD
       cmd: ./croc-hunter
-      tag: ${TPL_ENVIRONMENT:-release}-$WERCKER_GIT_COMMIT
+      tag: release-$WERCKER_GIT_COMMIT
       ports: "8080"
       repository: quay.io/flywire/croc-hunter
       registry: https://quay.io
