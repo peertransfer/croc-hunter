@@ -50,14 +50,6 @@ build:
 
     # Copy binary to a location that gets passed along to the deploy pipeline
     - script:
-        name: ls PWD
-        code: |
-          ls
-          pwd
-          printenv
-
-    # Copy binary to a location that gets passed along to the deploy pipeline
-    - script:
         name: copy binary
         code: cp croc-hunter croc-hunter-service.json croc-hunter-controller.json "$WERCKER_OUTPUT_DIR"
 
