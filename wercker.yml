@@ -43,6 +43,11 @@ build:
         code: |
           go test ./...
 
+    # Copy binary to a location that gets passed along to the deploy pipeline
+    - script:
+        name: copy binary
+        code: cp croc-hunter "$WERCKER_OUTPUT_DIR"
+
 deploy:
     box: google/golang
     steps:
