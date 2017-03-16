@@ -68,26 +68,24 @@ deploy:
 
     - script:
         name: copy credentials
-        code: |
-          echo "$KUBERNETES_TOKEN" > id.txt
-          echo "$KUBERNETES_CA" > ca.txt
+        code: echo "$KUBERNETES_CA" | base64 --decode > ca.pem
 
     # Run this to create the rc and service
     - kubectl:
         server: $KUBERNETES_MASTER
-        certificate-authority: id.txt
-        token: ca.txt
+        certificate-authority: ca.pem
+        token: $KUBERNETES_ID
         command: create -f cities-controller.json
 
     - kubectl:
         server: $KUBERNETES_MASTER
-        certificate-authority: id.txt
-        token: ca.txt
+        certificate-authority: ca.pem
+        token: $KUBERNETES_ID
         command: create -f cities-service.json
 
     - kubectl:
         server: $KUBERNETES_MASTER
-        certificate-authority: id.txt
-        token: ca.txt
+        certificate-authority: ca.pem
+        token: $KUBERNETES_ID
         command: rolling-update croc-hunter
         image: quay.io/flywire/croc-hunter:$WERCKER_GIT_COMMIT
