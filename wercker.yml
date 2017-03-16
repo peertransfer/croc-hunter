@@ -75,13 +75,13 @@ deploy:
         server: $KUBERNETES_MASTER
         certificate-authority: ca.pem
         token: $KUBERNETES_TOKEN
-        command: create -f cities-controller.json
+        command: create -f croc-hunter-controller.json
 
     - kubectl:
         server: $KUBERNETES_MASTER
         certificate-authority: ca.pem
         token: $KUBERNETES_TOKEN
-        command: create -f cities-service.json
+        command: create -f croc-hunter-service.json
 
     - kubectl:
         server: $KUBERNETES_MASTER
