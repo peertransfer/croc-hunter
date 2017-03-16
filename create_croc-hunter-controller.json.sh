@@ -31,7 +31,7 @@ cat > croc-hunter-controller.json <<EOF
             "ports": [
               {
                 "name": "http-server",
-                "containerPort": 5000,
+                "containerPort": 8080,
                 "protocol": "TCP"
               }
             ]
