@@ -66,7 +66,6 @@ deploy:
         repository: quay.io/flywire/croc-hunter
         registry: https://quay.io
 
-rolling-update:
     # Run this to create the rc and service
     initialize:
     - kubectl:
@@ -83,6 +82,7 @@ rolling-update:
         insecure-skip-tls-verify: true
         command: create -f cities-service.json
 
+    rolling-update:
     - kubectl:
         server: $KUBERNETES_MASTER
         username: $KUBERNETES_USERNAME
