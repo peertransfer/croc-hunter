@@ -1,0 +1,15 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: croc-hunter
+  labels:
+    name: croc-hunter
+spec:
+  createExternalLoadBalancer: true
+  ports:
+    - port: 8080
+      targetPort: http-server
+      protocol: TCP
+  selector:
+    name: croc-hunter
