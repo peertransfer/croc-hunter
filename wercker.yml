@@ -74,18 +74,18 @@ deploy:
     - kubectl:
         server: $KUBERNETES_MASTER
         certificate-authority: ca.pem
-        token: $KUBERNETES_ID
+        token: $KUBERNETES_TOKEN
         command: create -f cities-controller.json
 
     - kubectl:
         server: $KUBERNETES_MASTER
         certificate-authority: ca.pem
-        token: $KUBERNETES_ID
+        token: $KUBERNETES_TOKEN
         command: create -f cities-service.json
 
     - kubectl:
         server: $KUBERNETES_MASTER
         certificate-authority: ca.pem
-        token: $KUBERNETES_ID
+        token: $KUBERNETES_TOKEN
         command: rolling-update croc-hunter
         image: quay.io/flywire/croc-hunter:$WERCKER_GIT_COMMIT
