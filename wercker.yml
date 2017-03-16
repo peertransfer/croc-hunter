@@ -66,27 +66,31 @@ deploy:
         repository: quay.io/flywire/croc-hunter
         registry: https://quay.io
 
+    - script:
+        name: copy credentials
+        code: |
+          echo "$KUBERNETES_TOKEN" > id.txt
+          echo "$KUBERNETES_CA" > ca.txt
+
     # Run this to create the rc and service
-    # initialize:
     - kubectl:
         server: $KUBERNETES_MASTER
-        username: $KUBERNETES_USERNAME
-        password: $KUBERNETES_PASSWORD
+        certificate-authority: id.txt
+        token: ca.txt
         insecure-skip-tls-verify: true
         command: create -f cities-controller.json
 
     - kubectl:
         server: $KUBERNETES_MASTER
-        username: $KUBERNETES_USERNAME
-        password: $KUBERNETES_PASSWORD
+        certificate-authority: id.txt
+        token: ca.txt
         insecure-skip-tls-verify: true
         command: create -f cities-service.json
 
-    # rolling-update:
     - kubectl:
         server: $KUBERNETES_MASTER
-        username: $KUBERNETES_USERNAME
-        password: $KUBERNETES_PASSWORD
+        certificate-authority: id.txt
+        token: ca.txt
         insecure-skip-tls-verify: true
         command: rolling-update croc-hunter
         image: quay.io/flywire/croc-hunter:$WERCKER_GIT_COMMIT
