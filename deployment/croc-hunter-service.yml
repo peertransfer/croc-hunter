@@ -6,7 +6,6 @@ metadata:
   labels:
     name: croc-hunter
 spec:
-  createExternalLoadBalancer: true
   ports:
     - port: 8080
       targetPort: http-server
