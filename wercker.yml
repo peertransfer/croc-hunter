@@ -67,7 +67,7 @@ deploy:
         registry: https://quay.io
 
     # Run this to create the rc and service
-    initialize:
+    # initialize:
     - kubectl:
         server: $KUBERNETES_MASTER
         username: $KUBERNETES_USERNAME
@@ -82,7 +82,7 @@ deploy:
         insecure-skip-tls-verify: true
         command: create -f cities-service.json
 
-    rolling-update:
+    # rolling-update:
     - kubectl:
         server: $KUBERNETES_MASTER
         username: $KUBERNETES_USERNAME
