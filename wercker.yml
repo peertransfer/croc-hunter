@@ -58,18 +58,18 @@ deploy:
     steps:
      # Use the scratch step to build a container from scratch based on the files present
     - internal/docker-scratch-push:
-        username: $QUAY_USERNAME
-        password: $QUAY_PASSWORD
-        cmd: ./croc-hunter
-        tag: ${TPL_ENVIRONMENT:-release}-$WERCKER_GIT_COMMIT
-        ports: "8080"
-        repository: quay.io/flywire/croc-hunter
-        registry: https://quay.io
+      username: $QUAY_USERNAME
+      password: $QUAY_PASSWORD
+      cmd: ./croc-hunter
+      tag: ${TPL_ENVIRONMENT:-release}-$WERCKER_GIT_COMMIT
+      ports: "8080"
+      repository: quay.io/flywire/croc-hunter
+      registry: https://quay.io
 
     - script:
-        name: copy credentials
-				cwd: deployment
-        code: echo "$KUBERNETES_CA" | base64 --decode > ca.pem
+      name: copy credentials
+      cwd: deployment
+      code: echo "$KUBERNETES_CA" | base64 --decode > ca.pem
 
     # Run this to create the rc and service
     - script:
@@ -88,11 +88,11 @@ deploy:
       command: apply -f todo-kube.yml
 
     - kubectl:
-        server: $KUBERNETES_MASTER
-        certificate-authority: ca.pem
-        token: $KUBERNETES_TOKEN
-        command: rolling-update croc-hunter
-        image: quay.io/flywire/croc-hunter:$WERCKER_GIT_COMMIT
+      server: $KUBERNETES_MASTER
+      certificate-authority: ca.pem
+      token: $KUBERNETES_TOKEN
+      command: rolling-update croc-hunter
+      image: quay.io/flywire/croc-hunter:$WERCKER_GIT_COMMIT
 
     - script:
       name: cleanup
