@@ -74,6 +74,7 @@ deploy:
       code: |
         cat croc-hunter-service.yml >> croc-hunter-kube.yml
         ./t.sh croc-hunter-deployment.template.yml >> croc-hunter-kube.yml
+        ./t.sh croc-hunter-controller.template.yml >> croc-hunter-kube.yml
         cat croc-hunter-kube.yml
 
     - kubectl:
