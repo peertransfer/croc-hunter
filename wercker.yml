@@ -89,6 +89,7 @@ deploy:
       certificate-authority: ca.pem
       token: $KUBERNETES_TOKEN
       command: rolling-update croc-hunter
+      image: quay.io/flywire/croc-hunter:release-$WERCKER_GIT_COMMIT
 
     - script:
       name: cleanup
