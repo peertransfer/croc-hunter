@@ -73,7 +73,6 @@ deploy:
       cwd: deployment
       code: |
         cat croc-hunter-service.yml >> croc-hunter-kube.yml
-        ./t.sh croc-hunter-deployment.template.yml >> croc-hunter-kube.yml
         ./t.sh croc-hunter-controller.template.yml >> croc-hunter-kube.yml
         cat croc-hunter-kube.yml
 
@@ -90,7 +89,7 @@ deploy:
       certificate-authority: ca.pem
       token: $KUBERNETES_TOKEN
       command: rolling-update croc-hunter
-      image: quay.io/flywire/croc-hunter:$WERCKER_GIT_COMMIT
+      image: quay.io/flywire/croc-hunter:release-$WERCKER_GIT_COMMIT
 
     - script:
       name: cleanup
