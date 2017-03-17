@@ -12,7 +12,6 @@ spec:
       containers:
       - name: croc-hunter
         image: quay.io/flywire/croc-hunter:${TPL_ENVIRONMENT:-release}-${WERCKER_GIT_COMMIT}
-        readOnlyRootFS: true
         ports:
         - containerPort: 8080
         SecurityContext:
