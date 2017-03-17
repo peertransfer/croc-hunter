@@ -46,7 +46,7 @@ build:
     # Copy binary to a location that gets passed along to the deploy pipeline
     - script:
         name: copy binary
-        code: cp -r deployment croc-hunter "$WERCKER_OUTPUT_DIR"
+        code: cp -r static deployment croc-hunter "$WERCKER_OUTPUT_DIR"
 
 deploy:
     box: google/golang
