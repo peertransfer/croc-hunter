@@ -65,6 +65,9 @@ deploy:
       name: copy credentials
       cwd: deployment
       code: |
+        ls
+        set -x
+        rm ca.pem
         echo "$KUBERNETES_CA" | base64 --decode > ca.pem
 
     # Run this to create the rc and service
