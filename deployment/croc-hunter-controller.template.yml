@@ -14,3 +14,5 @@ spec:
         image: quay.io/flywire/croc-hunter:${TPL_ENVIRONMENT:-release}-${WERCKER_GIT_COMMIT}
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+      - name: flywire-k8s-pull-secret
