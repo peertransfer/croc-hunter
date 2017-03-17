@@ -88,8 +88,7 @@ deploy:
       server: $KUBERNETES_MASTER
       certificate-authority: ca.pem
       token: $KUBERNETES_TOKEN
-      command: rolling-update croc-hunter
-      file: croc-hunter-controller.yml
+      command: rolling-update croc-hunter --filename ./croc-hunter-controller
 
     - script:
       name: cleanup
