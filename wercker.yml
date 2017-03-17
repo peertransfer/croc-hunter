@@ -46,7 +46,7 @@ build:
     # Copy binary to a location that gets passed along to the deploy pipeline
     - script:
         name: copy binary
-        code: cp croc-hunter "$WERCKER_OUTPUT_DIR"
+        code: cp -r deployment croc-hunter "$WERCKER_OUTPUT_DIR"
 
 deploy:
     box: google/golang
@@ -65,9 +65,6 @@ deploy:
       name: copy credentials
       cwd: deployment
       code: |
-        ls
-        set -x
-        rm ca.pem
         echo "$KUBERNETES_CA" | base64 --decode > ca.pem
 
     # Run this to create the rc and service
