@@ -8,6 +8,7 @@ spec:
     metadata:
       labels:
         name: croc-hunter
+        revision: ${TPL_ENVIRONMENT:-release}-${WERCKER_GIT_COMMIT}
     spec:
       containers:
       - name: croc-hunter
