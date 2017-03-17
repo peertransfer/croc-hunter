@@ -7,8 +7,7 @@ spec:
   template:
     metadata:
       labels:
-        name: croc-hunter
-        revision: ${TPL_ENVIRONMENT:-release}-${WERCKER_GIT_COMMIT}
+        app: croc-hunter
     spec:
       containers:
       - name: croc-hunter
