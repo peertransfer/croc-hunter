@@ -12,6 +12,7 @@ spec:
       containers:
       - name: croc-hunter
         image: quay.io/flywire/croc-hunter:${TPL_ENVIRONMENT:-release}-${WERCKER_GIT_COMMIT}
+        readOnlyRootFS: true
         resources:
           requests:
             memory: "64M"
@@ -21,5 +22,7 @@ spec:
             cpu: "1"  
         ports:
         - containerPort: 8080
+        SecurityContext:
+        - readOnlyRootFilesystem: true
       imagePullSecrets:
       - name: flywire-k8s-pull-secret
