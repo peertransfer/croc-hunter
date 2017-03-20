@@ -88,7 +88,7 @@ deploy:
       server: $KUBERNETES_MASTER
       certificate-authority: ca.pem
       token: $KUBERNETES_TOKEN
-      command: rolling update --image-pull-policy=IfNotPresent
+      command: rolling-update --image-pull-policy=IfNotPresent
       image: https://quay.io/flywire/croc-hunter:release-$WERCKER_GIT_COMMIT
       
     - script:
