@@ -83,6 +83,14 @@ deploy:
       token: $KUBERNETES_TOKEN
       command: apply -f croc-hunter-kube.yml
 
+    - kubectl:
+      cwd: deployment
+      server: $KUBERNETES_MASTER
+      certificate-authority: ca.pem
+      token: $KUBERNETES_TOKEN
+      command: rolling-update croc-hunter --image-pull-policy=IfNotPresent
+      image: quay.io/flywire/croc-hunter:release-$WERCKER_GIT_COMMIT
+      
     - script:
       name: cleanup
       cwd: deployment

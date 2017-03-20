@@ -13,6 +13,13 @@ spec:
       - name: croc-hunter
         image: quay.io/flywire/croc-hunter:${TPL_ENVIRONMENT:-release}-${WERCKER_GIT_COMMIT}
         readOnlyRootFS: true
+        resources:
+          requests:
+            memory: "64M"
+            cpu: "300m"
+          limits:
+            memory: "128M"
+            cpu: "1"  
         ports:
         - containerPort: 8080
         SecurityContext:
