@@ -47,6 +47,12 @@ build:
     - script:
         name: copy binary
         code: cp -r static deployment croc-hunter "$WERCKER_OUTPUT_DIR"
+       
+  after-steps:
+    - install-packages:
+        packages: ruby
+    - flywire-playground/sumologic-notifier@0.1.7:
+        url: $SUMOLOGIC_COLLECTOR_URL
 
 deploy:
     box: google/golang
@@ -95,3 +101,9 @@ deploy:
       name: cleanup
       cwd: deployment
       code: rm -rf ca.pem croc-hunter-kube.yml
+
+    after-steps:
+      - install-packages:
+          packages: ruby
+      - flywire-playground/sumologic-notifier@0.1.7:
+          url: $SUMOLOGIC_COLLECTOR_URL
