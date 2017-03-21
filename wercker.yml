@@ -104,6 +104,6 @@ deploy:
 
     after-steps:
       - install-packages:
-          packages: ruby
+          packages: ruby openssl
       - flywire-playground/sumologic-notifier@0.1.7:
           url: $SUMOLOGIC_COLLECTOR_URL
