@@ -13,3 +13,12 @@ spec:
   selector:
     app: croc-hunter
   type: LoadBalancer
+  volumeClaimTemplates:
+  	- metadata:
+        name: "mongodb"
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "1Gi"

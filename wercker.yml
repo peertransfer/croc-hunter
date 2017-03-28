@@ -87,6 +87,13 @@ deploy:
       server: $KUBERNETES_MASTER
       certificate-authority: ca.pem
       token: $KUBERNETES_TOKEN
+      command: apply -f storage-class-encrypted.yml
+
+    - kubectl:
+      cwd: deployment
+      server: $KUBERNETES_MASTER
+      certificate-authority: ca.pem
+      token: $KUBERNETES_TOKEN
       command: apply -f croc-hunter-kube.yml
 
     - kubectl:
